@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>ChessStuff</title>
+
+  <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+
+  <!-- Custom styles for this template -->
+
+        <link rel="stylesheet" href="{% static 'css/full-width-pics.css' %}">
+
+</head>
+
+<body>
+
+
+  <!-- Header - set the background image for the header in the line below -->
+  <header class="py-5 bg-image-full" style="background-image: url({% static 'images/chess-1.jpg' %});">
+    <img class="img-fluid d-block mx-auto" src="{% static 'images/chess-logo-removebg-preview.png' %}" alt="" style=height:5vw>
+  </header>
+
+  <!-- Content section -->
+  <section class="py-5">
+    <div class="container">
+      <h1>Wybierz zdjęcie</h1>
+          <form method = "POST"  enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ image_form.as_p }}
+
+            <button type="submit" name = "image" >Upload</button>
+
+          </form>
+            <br>
+        <h1> lub plik wideo</h1>
+            <form method="POST"  enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ video_form.as_p }}
+                <button type="submit" name = "video"> Upload</button>
+
+            </form>
+
+        {% if img_obj %}
+            <br>
+            Wybrane zdjęcie
+            <br>
+            <img src="{{ img_obj.Img.url }}" alt="connect" style="max-height:500px">
+            <br>
+            <a target = _blank href = https://lichess.org/analysis/{{ notation }}>Przeanalizuj partię</a>
+        {% endif %}
+
+
+
+    </div>
+
+  </section>
+
+  <!-- Image element - set the background image for the header in the line below -->
+  <div class="py-5 bg-image-full" style="background-image: url({% static 'images/chess3.jpg' %});">
+
+    <!-- Put anything you want here! There is just a spacer below for demo purposes! -->
+    <div style="height: 200px;"></div>
+
+  </div>
+
+  <!-- Content section -->
+
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+
+  <script src= "{% static 'vendor/jquery/jquery.min.js' %}"></script>
+
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</body>
+
+</html>
